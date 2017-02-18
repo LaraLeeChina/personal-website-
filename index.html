@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="common.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
+
+    <style>
+    </style>
+    <script src="move.js"></script>
+    <script src="jquery-1.7.2.js"></script>
+    <script src=""></script>
+    <script src="common.js"></script>
+    <script>
+        function getDir(obj,ev){
+            var x=obj.offsetLeft+obj.offsetWidth/2-ev.pageX;
+            var y=obj.offsetTop+obj.offsetHeight/2-ev.pageY;
+
+            return Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;
+        }
+        function through(obj){
+            var oS=obj.children[0];
+            obj.onmouseenter=function(ev){
+                var oEvent=ev ||event;
+                var dir=getDir(this,oEvent);
+                switch (dir){
+                    case 0:
+                        oS.style.top=0+'px';
+                        oS.style.left=200+'px';
+                        break;
+                    case 1:
+                        oS.style.top=200+'px';
+                        oS.style.left=0+'px';
+                        break;
+                    case 2:
+                        oS.style.top=0+'px';
+                        oS.style.left=-200+'px';
+                        break;
+                    case 3:
+                        oS.style.top=-200+'px';
+                        oS.style.left=0+'px';
+                        break;
+                }
+                move(oS,{left:0,top:0},{duration:800});
+            };
+
+            obj.onmouseleave=function(ev){
+                var oEvent=ev ||event;
+                var dir=getDir(this,oEvent);
+                switch (dir){
+                    case 0:
+                        move(oS,{top:0,left:200},{duration:800});
+                        break;
+                    case 1:
+                        move(oS,{top:200,left:0},{duration:800});
+                        break;
+                    case 2:
+                        move(oS,{top:0,left:-200},{duration:800});
+                        break;
+                    case 3:
+                        move(oS,{top:-200,left:0},{duration:800});
+                        break;
+                }
+            }
+        }
+    window.onload = function () {
+            /*var oNav=document.getElementById('nav');*/
+            var oBanner=document.getElementById('banner');
+            var oBack=document.getElementById('goTop');
+            var oThrough=document.getElementById('through');
+            var oThird=document.getElementById('third');
+            var oPlane=document.getElementById('plane');
+
+
+            //三屏设置宽
+            oBanner.style.height=document.documentElement.clientHeight+'px';
+            oThrough.style.height=document.documentElement.clientHeight+'px';
+            oThird.style.height=document.documentElement.clientHeight+'px';
+            oPlane.style.height=document.documentElement.clientHeight+'px';
+
+            //回到顶部
+                $(window).scroll(function() {
+                    if($(window).scrollTop() >= 100){
+                        $('.actGotop').fadeIn(300);
+                    }else{
+                        $('.actGotop').fadeOut(300);
+                    }
+                });
+                $('.actGotop').click(function(){
+                    $('html,body').animate({scrollTop: '0px'}, 800);});
+
+
+
+            //吸顶条
+            var oTopBar=document.getElementById('topbar');
+            var oTopHidden=document.getElementById('topbar_hidden');
+            var oBarT=oTopBar.offsetTop;
+            window.onscroll= function () {
+                var oST=document.documentElement.scrollTop || document.body.scrollTop;
+                if(oST>oBarT-20){
+
+                    oTopBar.style.position='fixed';
+                    oTopBar.style.zIndex='999';
+                    oTopHidden.style.display='block';
+
+                }else{
+                    oTopBar.style.position='';
+                    oTopHidden.style.display='none';
+                }
+            };
+
+            //开场效果
+        var oCircle=document.getElementById('circle');
+        var oPlaneImg=document.getElementById('planeimg');
+        var oCImg=oCircle.children[0];
+        oCircle.onclick=function(){
+            oCircle.style.transition='2.5s all ease-in';
+            oCircle.style.transform='scale(13)';
+            oCImg.style.display='none';
+            oCircle.addEventListener('transitionend',function(){
+                oCircle.innerHTML='';
+                oPlaneImg.style.transition='1s all ease-out';
+                oPlaneImg.style.transform='scale(3) translate(-150px, 60px)';
+
+            },false);
+        };
+
+            //穿墙
+            var aUl=oThrough.getElementsByTagName('ul');
+            for(var i=0;i<aUl.length; i++){
+                through(aUl[i]);
+            }
+     };
+    </script>
+</head>
+<body>
+<!-- 飞机飞入-->
+<div class="plane" id="plane">
+    <div class="circle" id="circle"><img width="140" height="140" src="img/loading-Home.gif" /></div>
+    <img id="planeimg" src="img/plane.png" />
+    <img src="img/propeller.png" id="propeller" />
+</div>
+
+<!--banner 第一屏-->
+<a name="first"> </a>
+<div class="banner" id="banner">
+
+</div>
+
+<div class="topbar" id="topbar">
+    <ul>
+        <li><a href="#first">第一屏</a></li>
+        <li><a href="#sec">第二屏</a></li>
+        <li><a href="#third">第三屏</a></li>
+        <li><a href="#footer">联系我</a></li>
+    </ul>
+</div>
+<div class="topbar_hidden" id="topbar_hidden"></div>
+
+<!--穿墙 第二屏-->
+<a name="sec"> </a>
+<div class="through" id="through">
+   <div class="wraper">
+       <ul>
+           <li>111</li>
+       </ul>
+       <ul>
+           <li>222</li>
+       </ul>
+       <ul>
+           <li>333</li>
+       </ul>
+       <ul>
+           <li>444</li>
+       </ul>
+       <ul>
+           <li>555</li>
+       </ul>
+       <ul>
+           <li>666</li>
+       </ul>
+       <ul>
+           <li>777</li>
+       </ul>
+       <ul>
+           <li>888</li>
+       </ul>
+       <ul>
+           <li>9999</li>
+       </ul>
+       <ul>
+           <li>1010</li>
+       </ul>
+   </div>
+</div>
+
+<!-- 第三屏-->
+<a name="third"> </a>
+<div id="third">
+
+</div>
+
+<!-- footer-->
+<a name="footer"> </a>
+<div id="footer">
+</div>
+
+<!--回到顶部-->
+<div class="actGotop"><a href="javascript:;" title="返回顶部"></a></div>
+
+<!--侧栏导航-->
+<!--
+<div class="sideNav" id="sideNav">
+    <ul>
+        <li><a href="#first">第一屏</a></li>
+        <li><a href="#sec">第二屏</a></li>
+        <li><a href="#third">第三屏</a></li>
+        <li><a href="#footer">联系我</a></li>
+    </ul>
+</div>
+-->
+
+
+</body>
+</html>

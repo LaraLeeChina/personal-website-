@@ -1,0 +1,81 @@
+
+.wraper{width:1100px; margin:0 auto;}
+/* actGotop */
+.actGotop{position:fixed;_position:absolute; bottom:70px; right:30px;width:120px;height:120px;display:none;}
+.actGotop a,.actGotop a:link{width:150px;height:195px;display:inline-block;background:url(img/gotop.png) no-repeat;}
+.actGotop a:hover{background:url(img/gotop1.gif) no-repeat;outline:none;}
+
+/*侧栏导航*/
+.sideNav{
+    position:fixed;
+    top:50%;
+    margin-top:-100px;
+    right:-80px;
+    height:200px;
+    width:100px;
+    background: #5a33f7;
+    opacity: 0.5;
+    border-radius: 20px;
+}
+.sideNav a{
+    color: #fd1c18;
+    font-size: 24px;
+}
+.sideNav li {
+   width:72px;
+    height:26px;
+    margin-left:14px;
+    margin-top:26px;
+}
+
+/*吸顶条*/
+.topbar{
+    width:100%;
+    height:80px;
+    background: #8e9580;
+
+    top:0;
+    left:0;
+}
+.topbar_hidden{ width:100%; height:80px; display: none;  background-color: #f2bbad;}
+
+.banner {
+    width:100%;
+    background: #d0ff84;
+}
+/*飞机*/
+.plane{ width:100%; background: #1b1b1b;  position:relative; overflow: hidden;}
+.circle{ width:140px; height:140px; text-align:center;  background: #ffd200;  position:absolute;top:50%; left:50%; margin-top:-70px; margin-left:-70px; border-radius: 30px ; box-sizing: content-box; }
+#planeimg{width:200px; height:100px; box-sizing: content-box; position:absolute; top:100px; right:200px; }
+
+/*穿墙*/
+.through{
+    width:100%;
+    background-color: #f2bbad;
+}
+#third{
+    width:100%;
+    background-color: #cbfdf4;
+}
+
+#footer{ width:100%; height:80px; background:#f2bbad; position:relative; }
+
+
+#through ul{
+    width:200px;
+    height:200px;
+    background: #f4e83e;
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    float:left;
+    margin-top:30px;
+}
+#through ul li{
+    width:200px;
+    height:200px;
+    background: #ff8236;
+    position:absolute;
+    top:0;
+    left:-200px;
+}
